@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Landing from './Components/Pages/Landing';
-import Login from './Components/Pages/Login';
+import Auth from './Components/Pages/Auth';
+
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Landing/>}/>
-        <Route  path="/login" element={<Login/>} ></Route>
+        <Route  path="/Auth" element={ <Auth></Auth> } ></Route>
+        <Route  path="/register" element={ <Auth>register={true}</Auth> } ></Route>
+
       </Routes>
     </div>
   );
