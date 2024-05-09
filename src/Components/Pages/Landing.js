@@ -3,7 +3,6 @@ import { Col, Container, Row } from 'react-bootstrap'
 import './Landing.css'
 import Button from 'react-bootstrap/Button';
 import Header from '../Header';
-import Footer from '../Footer';
 
 function Landing() {
   return (
@@ -53,7 +52,6 @@ function Landing() {
 
 
       </Container>
-      <Footer></Footer>
     </div>
   )
 }
