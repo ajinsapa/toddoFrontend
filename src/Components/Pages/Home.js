@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Projects from './Projects'
-import Header from '../Header'
+
 
 function Home() {
   return (
