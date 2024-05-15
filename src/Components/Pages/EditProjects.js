@@ -54,9 +54,7 @@ useEffect(()=>{
       style={{ border: "1px black solid" }}
     >
       <div className="w-40% ">
-        <Link to={"/view"}>
-          <i class="fa-solid fa-backward  "> back</i>
-        </Link>
+       
         <h1 className="text-center">Edit Toddo</h1>
         <FloatingLabel controlId="floatingInput" label="Toddo" className="mb-3">
           <Form.Control type="text" value={editInputs.tName} onChange={(e)=>setEditInputs({...editInputs,tName:e.target.value})} />

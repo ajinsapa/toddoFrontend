@@ -28,7 +28,7 @@ function Landing() {
 <h3 className='mt-2' >toDo</h3>
 <h4>To Do gives you to focus,from work to play.</h4>
 <div className='text-center'> 
-<Button className='mt-3' variant="primary" size="lg">
+<Button  href="/Auth" className='mt-3' variant="primary" size="lg">
      Get Started
         </Button>{' '}</div>
 </div>

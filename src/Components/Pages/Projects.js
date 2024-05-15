@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import {
   addProjectApi,
@@ -22,8 +22,8 @@ function Projects() {
   const [listProject, setListProject] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage] = useState(3);
-  const [projectTitle, setProjectTitle] = useState({title:""});
-  const[projectId,setProjectId]=useState(null)
+  const [projectTitle, setProjectTitle] = useState({ title: "" });
+  const [projectId, setProjectId] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,11 +31,11 @@ function Projects() {
   const showEditForm = async (e, _id) => {
     e.preventDefault();
     const response = await getProjectTitleApi(_id);
-    setProjectTitle({title:response.data.ProjectDetails.title});
+    setProjectTitle({ title: response.data.ProjectDetails.title });
     // console.log(response.data);
     handleShow();
     setEditForm(true);
-    setProjectId(_id)
+    setProjectId(_id);
   };
 
   const showAddForm = () => {
@@ -57,7 +57,7 @@ function Projects() {
         });
         setAddProject({ title: "" });
         getAllProjects();
-        handleClose(); // Reset the title after adding
+        handleClose();
       } else {
         Swal.fire({
           title: "Project Not Added",
@@ -79,10 +79,10 @@ function Projects() {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       });
-  
+
       if (result.isConfirmed) {
         const response = await deleteProjectApi(i);
-  
+
         if (response.status >= 200 && response.status <= 300) {
           await Swal.fire({
             title: "Deleted!",
@@ -95,7 +95,6 @@ function Projects() {
         }
       }
     } catch (error) {
-      // Handle error
       console.error("Error deleting project:", error);
       Swal.fire({
         title: "Error",
@@ -104,41 +103,36 @@ function Projects() {
       });
     }
   };
-  
-
 
   const getAllProjects = async () => {
     const result = await getProjectApi();
     setListProject(result.data.allProjects);
   };
 
-  const handleEdit=async()=>{
+  const handleEdit = async () => {
     console.log(projectId);
-    console.log(projectTitle,"title");
-    const response=await editProjectApi(projectId,projectTitle)
-    console.log(response,"edit");
-    alert("Edited")
-    handleClose()
-    getAllProjects()
-  }
+    console.log(projectTitle, "title");
+    const response = await editProjectApi(projectId, projectTitle);
+    console.log(response, "edit");
+    alert("Edited");
+    handleClose();
+    getAllProjects();
+  };
 
   const setData = (e) => {
     const { value, name } = e.target;
     if (editForm) {
-      setProjectTitle({ ...projectTitle,title: value });
+      setProjectTitle({ ...projectTitle, title: value });
     } else {
-      setAddProject({ ...addProject, [name]: value }); 
+      setAddProject({ ...addProject, [name]: value });
     }
     console.log(projectTitle);
   };
-  
-  
 
   useEffect(() => {
     getAllProjects();
   }, []);
 
-  // Logic for pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = listProject.slice(
@@ -147,7 +141,6 @@ function Projects() {
   );
   console.log(projectTitle);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -171,7 +164,7 @@ function Projects() {
             currentProjects.map((project) => (
               <div key={project.id} className="pb-3">
                 <div className="d-flex justify-content-between ">
-                  {/* Wrap the project title in a Link component */}
+                 
                   <Link
                     to="/view"
                     state={project}
@@ -200,7 +193,9 @@ function Projects() {
                         >
                           Edit
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => deleteProject(project?._id)}>
+                        <Dropdown.Item
+                          onClick={(e) => deleteProject(project?._id)}
+                        >
                           Delete
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -248,8 +243,10 @@ function Projects() {
               <Form.Control
                 type="text"
                 name="title"
-                value={ projectTitle.title }
-                onChange={(e) => setProjectTitle({...projectTitle,title:e.target.value})}
+                value={projectTitle.title}
+                onChange={(e) =>
+                  setProjectTitle({ ...projectTitle, title: e.target.value })
+                }
               />
             ) : (
               <Form.Control

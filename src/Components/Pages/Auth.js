@@ -15,7 +15,7 @@ function Auth() {
   const loginPage = () => {
     setIsRegister(false);
   };
-const navigate=useNavigate()
+  const navigate = useNavigate();
   //validation state
 
   const [nameValid, setNameValid] = useState(false);
@@ -74,18 +74,16 @@ const navigate=useNavigate()
       const result = await login(user);
       console.log(result);
       if (result.status == 200) {
-        
-               //Store token
+        //Store token
 
-               localStorage.setItem("currentUser",JSON.stringify(result.data.user))
-               localStorage.setItem("token",result.data.token)
-
+        localStorage.setItem("currentUser", JSON.stringify(result.data.user));
+        localStorage.setItem("token", result.data.token);
 
         Swal.fire({
           title: "Login Successfully!",
           icon: "success",
         });
- navigate('/home')
+        navigate("/home");
         setUser({
           email: "",
           password: "",
