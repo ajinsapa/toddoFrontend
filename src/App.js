@@ -5,6 +5,7 @@ import Auth from './Components/Pages/Auth';
 import Home from './Components/Pages/Home';
 import Projects from './Components/Pages/Projects';
 import ViewProjects from './Components/Pages/ViewProjects';
+import EditProjects from './Components/Pages/EditProjects';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route  path="/home" element={ <Home></Home> } ></Route>
         <Route  path="/project" element={ <Projects></Projects> } ></Route>
         <Route  path="/view" element={ <ViewProjects></ViewProjects> } ></Route>
+        <Route  path="/edit/:id" element={ <EditProjects></EditProjects> } ></Route>
 
       </Routes>
     </div>
